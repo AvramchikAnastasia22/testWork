@@ -7,6 +7,7 @@ import org.example.constant.Constant;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Map;
+import java.util.Objects;
 
 public class ConvertService {
     FileService fileService = new FileService();
@@ -68,7 +69,7 @@ public class ConvertService {
 
         String words = Constant.EMPTY_STRING;
 
-        if (Character.getNumericValue(triad.charAt(0)) != 0)
+        if (hundreds != 0)
             words += digitsMap.get(hundreds * 100) + Constant.PLACEHOLDER;
         if (dozens == 1 && units <=9 && units >=0)
             words += digitsMap.get(dozens * 10 + units) + Constant.PLACEHOLDER;
@@ -86,7 +87,7 @@ public class ConvertService {
 
 
     private String getType(int categoruNumber, String number) {
-        if (number == Constant.THREE_ZERO) return Constant.EMPTY_STRING;
+        if (Objects.equals(number,Constant.THREE_ZERO)) return Constant.EMPTY_STRING;
         if (categoruNumber == 1) return categoryMap.get(categoruNumber) +
                 Constant.STRING_ENDING[0][numberService.selectTypeNumber(numberService.checkNumberModule(number))] + Constant.PLACEHOLDER;
         if (categoruNumber > 1) return categoryMap.get(categoruNumber) +

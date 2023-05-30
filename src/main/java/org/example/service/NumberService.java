@@ -16,9 +16,10 @@ public class NumberService {
         return digit;
     }
     public Integer selectTypeNumber(int digit) {
-        if ((digit % 10) == 1) return 0;
-        if ((digit % 10) > 1 && (digit % 10) < 5) return 1;
+
         if (digit > 10 && digit < 20) return 2;
+        if ((digit % 10) > 1 && (digit % 10) < 5) return 1;
+        if ((digit % 10) == 1) return 0;
         return 2;
     }
 }
